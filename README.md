@@ -6,6 +6,21 @@
 * (기기 로그인 시 일회성으로 호출하는 유저 생성/저장 API로 대체할 계획입니다.)
 * 자체 데이터 구조 Feed, 등은 아래에 명세합니다.
 
+## User
+### POST /createUser
+* Firebase 인증 후 최초 1회 호출합니다.
+* 서버 데이터베이스(MongoDB)에 유저 정보를 생성합니다.
+```
+@Header("Authorization") authorization
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_CHECK_USER',
+    error: 
+}
+```
+
 ## Feed
 ### POST /sendHomeFeed
 * 피드를 등록할 때 사용합니다.
@@ -165,6 +180,51 @@
 {
     result: 'ok' || 'GET_CHAT_ERROR',
     logs: [+ChatLog]
+}
+```
+
+## Team
+### POST /createTeam
+* 팀을 생성할 때 호출합니다.
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        name: "String",
+        members: ["String"],    // uid
+        room: "String"          // ObjectId
+    }
+}
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_CREATE_TEAM'
+}
+```
+
+### POST /searchTeam
+* 팀을 검색할 때 호출합니다.
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        keyword: "String"
+    }
+}
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_SEARCH_TEAM',
+    teams: [
+        name: "String",
+        leader: "String",
+        members: ["String"],    // uid
+        room: "String"
+    ]
 }
 ```
 
