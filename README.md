@@ -108,6 +108,7 @@
         latitude: 37.3358,
         longitude: 126.5840,
         title: "String",
+        max_count: 0,
         // members: ["String"]  // Firebase uid
         snippet: "String",
         detail: "String"
@@ -145,6 +146,12 @@
         {
             team: "String",     // ObjectId
             leader: "String",   // ObjectId
+            teammates: {
+                max: 0,
+                count: 0,
+                male: 0,
+                female: 0
+            },
             position: {
                 latitude: 0.0,
                 longitude: 0.0
