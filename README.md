@@ -22,7 +22,46 @@
 }
 ```
 
+### POST /getObjectId
+* 자신의 ObjectId를 가져올 때 호출합니다.
+```
+@Header("Authorization") authorization
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'GET_OBJECTID_FAILED',
+    objectId: "String"  // ObjectId
+}
+```
+
 ## Friend
+### POST /getFriendsList    - 2017/11/24 01:11
+* 친구 목록을 불러올 때 호출합니다.
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        timestamp: 0
+    }
+}
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_GET_FRIENDS_LIST',
+    friends: [
+        {
+            _id: "String",  // ObjectId
+            name: "String",
+            gravatar: "String",
+            timestamp: 0
+        }
+    ]
+}
+```
+
 ### POST /searchUser
 * 친구 추가를 위해 유저를 검색할 때 호출합니다.
 * 이메일을 이용하여 유저를 검색합니다. (v0.1)
@@ -42,7 +81,7 @@
     result: 'ok',
     users: [
         {
-            uid: "String",
+            _id: "String",      // ObjectId
             name: "String",
             email: "String",
             gravatar: "String"
@@ -53,6 +92,25 @@
 {
     result: 'FAILED_SEARCH_USER',
     error: error
+}
+```
+
+### POST /addFriend
+* 친구를 추가할 때 호출합니다.
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        friend: "String",       // ObjectId
+        timestamp: 0
+    }
+}
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_ADD_FRIEND'
 }
 ```
 
