@@ -81,7 +81,7 @@
     result: 'ok',
     users: [
         {
-            _id: "String",      // ObjectId
+            uid: "String",      // Firebase.uid
             name: "String",
             email: "String",
             gravatar: "String"
@@ -102,7 +102,7 @@
 @Body
 {
     body: {
-        friend: "String",       // ObjectId
+        friend: "String",       // Firebase.uid
         timestamp: 0
     }
 }
@@ -317,7 +317,14 @@
 ```
 {
     result: 'ok' || 'GET_CHAT_ERROR',
-    logs: [+ChatLog]
+    logs: [
+        {
+            _id: "String",      // ObjectId
+            author: "String",   // Firebase.uid
+            content: "String",
+            timestamp: 0
+        }
+    ]
 }
 ```
 
