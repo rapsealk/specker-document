@@ -8,7 +8,33 @@
 // * (기기 로그인 시 일회성으로 호출하는 유저 생성/저장 API로 대체할 계획입니다.)
 
 ## User
-### POST /createUser
+
+### POST /signUp
+*
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        email: "String",
+        name: "String",
+        // optional below
+        password: "String",
+        age: 0,
+        sex: "String",
+        phone: "String",
+        address: "String"
+    }
+}
+```
+*
+```
+{
+    result: 'ok'
+}
+```
+
+### POST /createUser - deprecated ("signUp")
 * Firebase 인증 후 최초 1회 호출합니다.
 * 서버 데이터베이스(MongoDB)에 유저 정보를 생성합니다.
 ```
@@ -111,6 +137,24 @@
 ```
 {
     result: 'ok' || 'FAILED_ADD_FRIEND'
+}
+```
+
+### POST /removeFriend      - 2017/11/26 15:08
+* 친구를 삭제할 때 호출합니다.
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        friend: "String"        // Firebase.uid
+    }
+}
+```
+* 응답은 다음과 같습니다.
+```
+{
+    result: 'ok' || 'FAILED_REMOVE_FRIEND'
 }
 ```
 
