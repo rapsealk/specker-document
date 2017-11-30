@@ -306,6 +306,25 @@
 }
 ```
 
+### POST /createChatWithObjectId
+*
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        participants: ["String"]    // 본인을 제외한 참여자의 ObjectId가 들어갑니다.
+    }
+}
+```
+*
+```
+{
+    result: 'ok' || error,
+    _id: "String"
+}
+```
+
 ### POST /getChatrooms
 * 유저가 참여한 채팅방의 목록을 가져올 때 호출합니다.
 ```
@@ -323,6 +342,24 @@
             lastTimestamp: 1509778106267
         }
     ]
+}
+```
+
+### POST /removeChatroom
+*
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        chatroom: "String"  // ObjectId
+    }
+}
+```
+*
+```
+{
+    result: 'ok' || 'REMOVE_CHATROOM_ERROR'
 }
 ```
 
@@ -373,7 +410,7 @@
 ```
 
 ## Team
-### POST /createTeam
+### POST /createTeam - deprecated 2017/11/30 13:23
 * 팀을 생성할 때 호출합니다.
 ```
 @Header("Authorization") authorization
@@ -414,6 +451,27 @@
         members: ["String"],    // uid
         room: "String"
     ]
+}
+```
+
+### POST /getTeam
+*
+```
+@Header("Authorization") authorization
+@Body
+{
+    body: {
+        marker: "String"  // ObjectId
+    }
+}
+```
+*
+```
+{
+    result: 'ok' || 'FAILED_GET_TEAM',
+    team: {
+
+    }
 }
 ```
 
