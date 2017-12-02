@@ -438,6 +438,11 @@
 {
     body: {
         keyword: "String"
+        // optional - 범위가 주어질 경우
+        latitudeA: 0.0,
+        longitudeA: 0.0,
+        latitudeB: 0.0,
+        longitudeB: 0.0
     }
 }
 ```
@@ -461,7 +466,7 @@
 @Body
 {
     body: {
-        marker: "String"  // ObjectId
+        team: "String"  // ObjectId
     }
 }
 ```
