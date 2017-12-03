@@ -1,6 +1,5 @@
 # SPECKER API
 
-* 서버 주소는 http://XXX.XXX.XXX.XXX:XXXX/ 으로 통일됩니다.
 * Header에는 Firebase Token을 넣어주세요.
 * 클라이언트에서 처리할 때는 uid, 서버에서 처리할 때는 ObjectId로 구분하는 방향으로 진행합니다.
 * 자체 데이터 구조 Feed, 등은 아래에 명세합니다.
@@ -430,7 +429,7 @@
 }
 ```
 
-### POST /searchTeam
+### POST /searchTeam    - 2017/12/03 21:18
 * 팀을 검색할 때 호출합니다.
 ```
 @Header("Authorization") authorization
@@ -451,11 +450,31 @@
 {
     result: 'ok' || 'FAILED_SEARCH_TEAM',
     teams: [
+        {
+            _id: "String",      // ObjectId
+            leader: "String",   // ObjectId
+            teammates: {
+                max: 0, count: 0, male: 0, female: 0
+            },
+            position: {
+                latitude: 37.48774199369885,
+                longitude: 126.75376296043395
+            },
+            content: {
+                title: "String",
+                snippet: "String"
+            },
+            timestamp: 1511918608686
+        }
+    ]
+    /*
+    teams: [
         name: "String",
         leader: "String",
         members: ["String"],    // uid
         room: "String"
     ]
+    */
 }
 ```
 
