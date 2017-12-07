@@ -60,6 +60,25 @@
 }
 ```
 
+### POST /getUserWithUid
+*
+```
+@Header("Authorization") authorization
+```
+*
+```
+{
+    result: 'ok',
+    user: {
+        email: "String",
+        name: "String",
+        gender: "String",
+        age: 21,
+        description: "String"
+    }
+}
+```
+
 ## Friend
 ### POST /getFriendsList    - 2017/11/24 01:11
 * 친구 목록을 불러올 때 호출합니다.
